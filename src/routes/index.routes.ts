@@ -1,16 +1,27 @@
-import express from 'express';
-import {userSignUp,userLogin} from '../controllers/user.controller';
+import express, { Request, Response } from 'express';
+import { userSignUp, userLogin } from '../controllers/user.controller';
 import validateUserLogin from '../middlewares/validateAuth';
-const router=express.Router();
+const router = express.Router();
 
-router.post('/user/signup',userSignUp);
+interface UserData {
+    username: string,
+    email: string,
+    password: string
+}
 
-router.post('/user/login',userLogin);
+router.post('/user/signup', userSignUp);
 
-router.post('/teacher',validateUserLogin,(req,res)=>res.send(req.user))
+router.post('/user/login', userLogin);
 
-router.get('/healthcheckup', (_, res) => {
-    res.send({ message: "server running at the port 3001"})
+router.post('/teacher', validateUserLogin, (req: Request, res: Response) => {
+    if(req.user){
+        const user:UserData=req.user;
+        return res.send({user});
+    }
+})
+
+router.get('/healthcheckup', (_, res: Response) => {
+    res.send({ message: "server running at the port 3001" })
 })
 
 export default router;
