@@ -1,6 +1,7 @@
 import User from "../models/user.model";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import config from 'config';
 
 const userSignUp = async (req, res) => {
     try {
@@ -27,7 +28,7 @@ const userLogin = async (req, res) => {
         const user=await User.findOne({email:userData.email});
         const checkPassword=await bcrypt.compare(userData.password,user.password);
         if(checkPassword){
-            const token=jwt.sign(userData,"dhfdksjfkdsjfk");
+            const token=jwt.sign(userData,config.get<string>("jwtSecretKey"));
             // req.headers.token=token;
             return res.status(201).send({message:`${token}`});
         }
