@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
-import { userSignUp, userLogin } from '../controllers/user.controller';
+import { userSignUp, userLogin } from '../controllers/studnet.auth.controller';
 import validateUserLogin from '../middlewares/validateAuth';
+import validate from '../middlewares/validateSchema';
+import signUpSceham from '../schema/user.schema';
 const router = express.Router();
 
 interface UserData {
@@ -9,7 +11,7 @@ interface UserData {
     password: string
 }
 
-router.post('/user/signup', userSignUp);
+router.post('/user/signup',validate(signUpSceham), userSignUp);
 
 router.post('/user/login', userLogin);
 

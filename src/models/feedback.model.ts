@@ -4,6 +4,8 @@ export interface feedBack extends mongoose.Document{
     instructor: string;
     rating: Number;
     comments: Number;
+    student:string,
+    teacher:string
 }
 
 const feedbackSchema = new mongoose.Schema<feedBack>({
@@ -19,7 +21,7 @@ const feedbackSchema = new mongoose.Schema<feedBack>({
     comments: {
         type: String,
         required: true
-    }
+    },
 })
 
 const feedBackModel = mongoose.model("feedback", feedbackSchema);
