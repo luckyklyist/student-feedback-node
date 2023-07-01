@@ -10,8 +10,6 @@ const feedBackTeacher = async (req: Request, res: Response): Promise<Response> =
     catch (err) {
         return res.status(500).send({ message: err })
     }
-
-
 }
 
 export default feedBackTeacher;

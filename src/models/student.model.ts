@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema<userDocument>({
     },
     userType:{
         type:String,
-        enum:["Student","Teacher"],
+        enum:["Student","Admin"],
         default:"Student"
     },
     password: {
