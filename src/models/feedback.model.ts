@@ -3,9 +3,9 @@ import mongoose, { ObjectId } from "mongoose";
 export interface feedBack extends mongoose.Document {
     instructor: ObjectId;
     rating: Number;
-    comments: Number;
-    student: string,
-    teacher: string
+    comment: Number;
+    student: ObjectId,
+    teacher: string,
 }
 
 const feedbackSchema = new mongoose.Schema<feedBack>({
@@ -19,10 +19,14 @@ const feedbackSchema = new mongoose.Schema<feedBack>({
         min: 1,
         max: 10
     },
-    comments: {
+    comment: {
         type: String,
         required: true
     },
+    student:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"student"
+    }
 })
 
 const feedBackModel = mongoose.model("feedback", feedbackSchema);

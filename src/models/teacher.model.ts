@@ -16,13 +16,7 @@ const teacherSchema=new mongoose.Schema<teacherDocument>({
         type:String,
         required:true,
         unique:true
-    },
-    feedBack:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"feedback"
-        }
-    ],
+    }
 })
 
 const TeacherModel=mongoose.model("teacher",teacherSchema);
