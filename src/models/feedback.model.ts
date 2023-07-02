@@ -1,17 +1,18 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
-export interface feedBack extends mongoose.Document{
-    instructor: string;
+export interface feedBack extends mongoose.Document {
+    instructor: ObjectId;
     rating: Number;
     comments: Number;
-    student:string,
-    teacher:string
+    student: string,
+    teacher: string
 }
 
 const feedbackSchema = new mongoose.Schema<feedBack>({
-    instructor: {
-        type: String,
-        required: true
+    instructor:
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "teacher"
     },
     rating: {
         type: Number,

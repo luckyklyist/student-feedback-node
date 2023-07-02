@@ -21,7 +21,7 @@ const userSignUp = async (req:Request, res:Response):Promise<Response> => {
         }
         const newUser = new User(req.body);
         await newUser.save();
-        return res.status(201).send({ message: "user sucessfully created" })
+        return res.status(201).send({ message: "user successfully created" })
     }
     catch (err) {
         console.log(err);

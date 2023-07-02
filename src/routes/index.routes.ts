@@ -3,6 +3,8 @@ import { userSignUp, userLogin } from '../controllers/studnet.auth.controller';
 import validateUserLogin from '../middlewares/validateAuth';
 import validate from '../middlewares/validateSchema';
 import signUpSceham from '../schema/user.schema';
+import feedBackTeacher from '../controllers/feedback.controller';
+import { addTeacher } from '../controllers/teacher.controller';
 const router = express.Router();
 
 interface UserData {
@@ -15,17 +17,17 @@ router.post('/user/signup',validate(signUpSceham), userSignUp);
 
 router.post('/user/login', userLogin);
 
-// feedback ot the teacher
-router.post('/feedback/:teacherID');
+// feedback to the teacher
+router.post('/feedback/:teacherID',feedBackTeacher);
 
 // edit the feedback
 router.put('/feedback/:teacherID')
 
 // delete the feedback
-router.put('/feedback/:teacherID')
+router.delete('/feedback/:teacherID')
 
 // register a teacher
-router.post('/addteacher');
+router.post('/addteacher',addTeacher);
 
 // add the teacher from the excel sheet to the DB]
 router.post('/addteacher/excel')
