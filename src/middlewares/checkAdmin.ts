@@ -14,3 +14,4 @@ const checkAdmin = async (req: Request, res: Response, next: NextFunction) => {
     }
 
 }
+export default checkAdmin;
