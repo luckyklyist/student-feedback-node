@@ -3,7 +3,7 @@ import { userSignUp, userLogin } from '../controllers/studnet.auth.controller';
 import validateUserLogin from '../middlewares/validateAuth';
 import validate from '../middlewares/validateSchema';
 import signUpSceham from '../schema/user.schema';
-import feedBackTeacher from '../controllers/feedback.controller';
+import {feedBackTeacher,editFeedbackTeacher,deleteFeedbackTeacher} from '../controllers/feedback.controller';
 import { addTeacher } from '../controllers/teacher.controller';
 const router = express.Router();
 
@@ -21,10 +21,10 @@ router.post('/user/login', userLogin);
 router.post('/feedback/:teacherID',feedBackTeacher);
 
 // edit the feedback
-router.put('/feedback/:teacherID')
+router.put('/feedback/:teacherID',editFeedbackTeacher);
 
 // delete the feedback
-router.delete('/feedback/:teacherID')
+router.delete('/feedback/:teacherID',deleteFeedbackTeacher);
 
 // register a teacher
 router.post('/addteacher',addTeacher);
