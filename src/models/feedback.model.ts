@@ -12,7 +12,8 @@ const feedbackSchema = new mongoose.Schema<feedBack>({
     instructor:
     {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "teacher"
+        ref: "teacher",
+        required:true
     },
     rating: {
         type: Number,
@@ -25,7 +26,8 @@ const feedbackSchema = new mongoose.Schema<feedBack>({
     },
     student:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"student"
+        ref:"student",
+        required:true
     }
 })
 

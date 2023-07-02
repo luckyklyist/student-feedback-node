@@ -3,8 +3,6 @@ import mongoose from "mongoose";
 export interface teacherDocument extends mongoose.Document{
     name:string;
     email:string;
-    password:string;
-    feedBack:string[];
 }
 
 const teacherSchema=new mongoose.Schema<teacherDocument>({

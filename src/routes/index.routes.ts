@@ -18,10 +18,10 @@ router.post('/user/signup',validate(signUpSceham), userSignUp);
 router.post('/user/login', userLogin);
 
 // feedback to the teacher
-router.post('/feedback/:teacherID',feedBackTeacher);
+router.post('/feedback/:teacherID',validateUserLogin,feedBackTeacher);
 
 // edit the feedback
-router.put('/feedback/:teacherID',editFeedbackTeacher);
+router.put('/feedback/:teacherID',validateUserLogin,editFeedbackTeacher);
 
 // delete the feedback
 router.delete('/feedback/:teacherID',deleteFeedbackTeacher);
