@@ -1,8 +1,8 @@
-import { Request,Response } from 'express';
+import { NextFunction, Request,Response } from 'express';
 import jwt from 'jsonwebtoken';
 import config from 'config';
 
-const validateUserLogin = async (req, res, next) => {
+const validateUserLogin = async (req:Request, res:Response, next:NextFunction) => {
     try {
         const authToken = req.headers.authorization;
         const bearerToken = authToken.split(' ')[1];
