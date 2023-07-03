@@ -5,7 +5,7 @@ import checkFeedbackUser from '../controllers/checkfeedback.controller';
 import validate from '../middlewares/validateSchema';
 import signUpSceham from '../schema/user.schema';
 import { feedBackTeacher, editFeedbackTeacher, deleteFeedbackTeacher } from '../controllers/feedback.controller';
-import { addTeacher, updateTecaher, deleteTeacher } from '../controllers/teacher.controller';
+import {teacherList, addTeacher, updateTecaher, deleteTeacher } from '../controllers/teacher.controller';
 const router = express.Router();
 
 interface UserData {
@@ -28,19 +28,19 @@ router.put('/feedback/:feedBackId', validateUserLogin, checkFeedbackUser, editFe
 router.delete('/feedback/:feedBackId', validateUserLogin, checkFeedbackUser, deleteFeedbackTeacher);
 
 // register a teacher
-router.post('/addteacher', addTeacher);
+router.post('/addteacher',validateUserLogin, addTeacher);
 
 // add the teacher from the excel sheet to the DB]
 router.post('/addteacher/excel')
 
 // list of all the teacher
-router.get('/teachers')
+router.get('/teachers',validateUserLogin,teacherList);
 
 // update the teacher
-router.put('/teacher/update/:teacherID', updateTecaher);
+router.put('/teacher/:teacherId',validateUserLogin, updateTecaher);
 
 // delete the teacher
-router.delete('/teacher/remove/:teacherID', deleteTeacher);
+router.delete('/teacher/:teacherId',validateUserLogin, deleteTeacher);
 
 // print the ranking of the teacher
 router.get("/teacher/ranking")
