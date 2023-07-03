@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
 import { userSignUp, userLogin } from '../controllers/studnet.auth.controller';
 import validateUserLogin from '../middlewares/validateAuth';
+import checkFeedbackUser from '../controllers/checkfeedback.controller';
 import validate from '../middlewares/validateSchema';
 import signUpSceham from '../schema/user.schema';
-import {feedBackTeacher,editFeedbackTeacher,deleteFeedbackTeacher} from '../controllers/feedback.controller';
-import { addTeacher,updateTecaher,deleteTeacher } from '../controllers/teacher.controller';
+import { feedBackTeacher, editFeedbackTeacher, deleteFeedbackTeacher } from '../controllers/feedback.controller';
+import { addTeacher, updateTecaher, deleteTeacher } from '../controllers/teacher.controller';
 const router = express.Router();
 
 interface UserData {
@@ -13,21 +14,21 @@ interface UserData {
     password: string
 }
 
-router.post('/user/signup',validate(signUpSceham), userSignUp);
+router.post('/user/signup', validate(signUpSceham), userSignUp);
 
 router.post('/user/login', userLogin);
 
 // feedback to the teacher
-router.post('/feedback/:teacherID',validateUserLogin,feedBackTeacher);
+router.post('/feedback/:teacherId', validateUserLogin, feedBackTeacher);
 
 // edit the feedback
-router.put('/feedback/:teacherID',validateUserLogin,editFeedbackTeacher);
+router.put('/feedback/:feedBackId', validateUserLogin, checkFeedbackUser, editFeedbackTeacher);
 
 // delete the feedback
-router.delete('/feedback/:teacherID',deleteFeedbackTeacher);
+router.delete('/feedback/:feedBackId', validateUserLogin, checkFeedbackUser, deleteFeedbackTeacher);
 
 // register a teacher
-router.post('/addteacher',addTeacher);
+router.post('/addteacher', addTeacher);
 
 // add the teacher from the excel sheet to the DB]
 router.post('/addteacher/excel')
@@ -36,10 +37,10 @@ router.post('/addteacher/excel')
 router.get('/teachers')
 
 // update the teacher
-router.put('/teacher/update/:teacherID',updateTecaher);
+router.put('/teacher/update/:teacherID', updateTecaher);
 
 // delete the teacher
-router.delete('/teacher/remove/:teacherID',deleteTeacher);
+router.delete('/teacher/remove/:teacherID', deleteTeacher);
 
 // print the ranking of the teacher
 router.get("/teacher/ranking")
