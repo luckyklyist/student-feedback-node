@@ -11,6 +11,7 @@ router.use('/teacher', teacherRoutes);
 
 // Other routes
 router.get('/student/chat/:chatroom');
+
 router.get('/healthcheckup', (_, res) => {
   res.send({ message: "Server running at port 3001" });
 });
