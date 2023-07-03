@@ -4,7 +4,7 @@ import validateUserLogin from '../middlewares/validateAuth';
 import validate from '../middlewares/validateSchema';
 import signUpSceham from '../schema/user.schema';
 import {feedBackTeacher,editFeedbackTeacher,deleteFeedbackTeacher} from '../controllers/feedback.controller';
-import { addTeacher } from '../controllers/teacher.controller';
+import { addTeacher,updateTecaher,deleteTeacher } from '../controllers/teacher.controller';
 const router = express.Router();
 
 interface UserData {
@@ -36,10 +36,10 @@ router.post('/addteacher/excel')
 router.get('/teachers')
 
 // update the teacher
-router.put('/teacher/update/:teacherID')
+router.put('/teacher/update/:teacherID',updateTecaher);
 
 // delete the teacher
-router.delete('/teacher/remove/:teacherID')
+router.delete('/teacher/remove/:teacherID',deleteTeacher);
 
 // print the ranking of the teacher
 router.get("/teacher/ranking")
