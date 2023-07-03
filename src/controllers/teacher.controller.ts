@@ -22,7 +22,7 @@ const addTeacher = async (req: Request, res: Response): Promise<Response> => {
     }
 }
 
-const updateTecaher = async (req: Request, res: Response): Promise<Response> => {
+const updateTeacher = async (req: Request, res: Response): Promise<Response> => {
     try {
         const teacherId = req.params.teacherId;
         const teacherExist = await TeacherModel.findOne({ _id: teacherId });
@@ -55,4 +55,4 @@ const deleteTeacher = async (req: Request, res: Response): Promise<Response> => 
     }
 }
 
-export { teacherList, addTeacher, updateTecaher, deleteTeacher };
+export { teacherList, addTeacher, updateTeacher, deleteTeacher };
