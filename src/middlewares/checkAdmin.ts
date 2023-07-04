@@ -1,16 +1,19 @@
-import { NextFunction, Request,Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import User from '../models/student.model';
 
 
 const checkAdmin = async (req: Request, res: Response, next: NextFunction) => {
-    try{
-        const user=req.user;
-        if (user.role==="admin"){
-            next()
+    try {
+        const { email } = req.user;
+        const userCheck = await User.findOne({ email });
+        console.log(userCheck?.userType)
+        if (userCheck?.userType === "Admin") {
+            console.log("user is admin");
+            next();
         }
-        return res.send({message:"permission denied"})
     }
-    catch(err){
-        return res.send({message:err});
+    catch (err) {
+        return res.send({ message: err });
     }
 
 }
