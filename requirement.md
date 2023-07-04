@@ -96,3 +96,6 @@
   - `instructor`: [string] (required) - The instructor associated with the course.
   - `rating`: [number] (required) - The rating given by the student for the course.
   - `comments`: [string] - Additional comments provided by the student.
+
+### Live chat 
+- Student can join the group for communications reagrding the review .
